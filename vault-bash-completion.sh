@@ -1,7 +1,7 @@
 function _vault() {
 
   local VAULT_COMMANDS='delete path-help read renew revoke server status write audit-disable audit-enable audit-list auth auth-disable auth-enable capabilities generate-root init key-status list mount mount-tune mounts policies policy-delete policy-write rekey remount rotate seal ssh step-down token-create token-lookup token-renew token-revoke unmount unseal version'
-  local VAULT_ROOTPATH=${VAULT_ROOTPATH:-secret/}
+  local VAULT_ROOTPATH=$(vault mounts | tail -n +2 | awk '{print $1}' | paste -s -d ' ' -)
 
   local cur=${COMP_WORDS[COMP_CWORD]}
   local line=${COMP_LINE}
