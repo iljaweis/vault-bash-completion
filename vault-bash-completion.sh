@@ -1,5 +1,14 @@
-function _vault() {
+# ---------------------------------------------------------------------------
+# vault-bash-completion
+#
+# by Ilja Weis
+#
+# This adds bash completions for [HashiCorp Vault](https://www.vaultproject.io/)
+#
+# https://github.com/iljaweis/vault-bash-completion
+# ---------------------------------------------------------------------------
 
+function _vault() {
   local VAULT_COMMANDS='delete path-help read renew revoke server status write audit-disable audit-enable audit-list auth auth-disable auth-enable capabilities generate-root init key-status list mount mount-tune mounts policies policy-delete policy-write rekey remount rotate seal ssh step-down token-create token-lookup token-renew token-revoke unmount unseal version'
 
   # get root paths
@@ -13,7 +22,7 @@ function _vault() {
 
   local cur=${COMP_WORDS[COMP_CWORD]}
   local line=${COMP_LINE}
-  
+
   if [ "$(echo $line | wc -w)" -le 2 ]; then
     if [[ "$line" =~ ^vault\ (read|write|delete|list)\ $ ]]; then
       COMPREPLY=($(compgen -W "$VAULT_ROOTPATH" -- ''))
