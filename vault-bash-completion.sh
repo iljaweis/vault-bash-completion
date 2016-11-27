@@ -23,7 +23,7 @@ function _vault() {
   elif [[ "$line" =~ ^vault\ (read|write|delete|list)\ (.*)$ ]]; then
     path=${BASH_REMATCH[2]}
     if [[ "$path" =~ ^([^ ]+)/([^ /]*)$ ]]; then
-      list=$(vault list ${BASH_REMATCH[1]} | tail -n +2)
+      list=$(vault list -format=yaml ${BASH_REMATCH[1]} | awk '{ print $2 }')
       COMPREPLY=($(compgen -W "$list" -P "${BASH_REMATCH[1]}/" -- ${BASH_REMATCH[2]}))
     else
       COMPREPLY=($(compgen -W "$VAULT_ROOTPATH" -- $path))
