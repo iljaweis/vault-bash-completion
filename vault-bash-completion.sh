@@ -15,7 +15,7 @@ function _vault() {
     # we do not have access to list mounts
     local VAULT_ROOTPATH="secret"
   else
-    local VAULT_ROOTPATH=$(vault mounts | tail -n +2 | awk '{print $1}' | paste -s -d ' ' -)
+    local VAULT_ROOTPATH=$(vault mounts | awk 'NR > 1 {print $1}')
   fi
 
   local cur=${COMP_WORDS[COMP_CWORD]}
