@@ -22,7 +22,7 @@ function _vault() {
   local prev=${COMP_WORDS[COMP_CWORD-1]}
   local line=${COMP_LINE}
 
-  if [[ $prev == "policies" || $prev == "policy-write" || $prev == "policy-delete" ]]; then
+  if [[ $prev =~ ^(policies|policy-write|policy-delete) ]]; then
     local policies=$(vault policies 2> /dev/null)
     COMPREPLY=($(compgen -W "$policies" -- $cur))
   elif [ "$(echo $line | wc -w)" -le 2 ]; then
