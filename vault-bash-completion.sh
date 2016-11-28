@@ -1,11 +1,9 @@
 # ---------------------------------------------------------------------------
 # vault-bash-completion
 #
-# by Ilja Weis
-#
 # This adds bash completions for [HashiCorp Vault](https://www.vaultproject.io/)
 #
-# https://github.com/iljaweis/vault-bash-completion
+# see https://github.com/iljaweis/vault-bash-completion
 # ---------------------------------------------------------------------------
 
 function _vault() {
