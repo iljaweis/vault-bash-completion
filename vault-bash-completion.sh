@@ -19,9 +19,13 @@ function _vault() {
   fi
 
   local cur=${COMP_WORDS[COMP_CWORD]}
+  local prev=${COMP_WORDS[COMP_CWORD-1]}
   local line=${COMP_LINE}
 
-  if [ "$(echo $line | wc -w)" -le 2 ]; then
+  if [[ $prev =~ ^(policies|policy-write|policy-delete) ]]; then
+    local policies=$(vault policies 2> /dev/null)
+    COMPREPLY=($(compgen -W "$policies" -- $cur))
+  elif [ "$(echo $line | wc -w)" -le 2 ]; then
     if [[ "$line" =~ ^vault\ (read|write|delete|list)\ $ ]]; then
       COMPREPLY=($(compgen -W "$VAULT_ROOTPATH" -- ''))
     else
