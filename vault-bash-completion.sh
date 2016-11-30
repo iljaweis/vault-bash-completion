@@ -18,8 +18,14 @@ function _vault_mounts() {
 function _vault() {
   local VAULT_COMMANDS='delete path-help read renew revoke server status write audit-disable audit-enable audit-list auth auth-disable auth-enable capabilities generate-root init key-status list mount mount-tune mounts policies policy-delete policy-write rekey remount rotate seal ssh step-down token-create token-lookup token-renew token-revoke unmount unseal version'
 
-  local cur=${COMP_WORDS[COMP_CWORD]}
-  local prev=${COMP_WORDS[COMP_CWORD-1]}
+  local cur
+  local prev
+
+  if [ $COMP_CWORD -gt 0 ]; then
+    cur=${COMP_WORDS[COMP_CWORD]}
+    prev=${COMP_WORDS[COMP_CWORD-1]}
+  fi
+
   local line=${COMP_LINE}
 
   if [[ $prev =~ ^(policies|policy-write|policy-delete) ]]; then
