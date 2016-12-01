@@ -20,7 +20,7 @@ get_completions(){
     COMP_WORDS=("$@")
 
     # add '' to COMP_WORDS if the last character of the command line is a space
-    [[ ${COMP_LINE[@]: -1} = ' ' ]] && COMP_WORDS+=('')
+    [[ "${COMP_LINE[@]: -1}" = ' ' ]] && COMP_WORDS+=('')
 
     # index of the last word
     COMP_CWORD=$(( ${#COMP_WORDS[@]} - 1 ))

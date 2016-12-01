@@ -87,3 +87,45 @@ fail() {
   output=$(echo "$output" | paste -s -d ' ' -)
   [[ "$output" =~ 'cubbyhole/test' ]] || fail "output was: \"$output\""
 }
+
+@test "'vault policies ' => default root" {
+  run get_completions 'vault policies '
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'default root' ]] || fail "output was: \"$output\""
+}
+
+@test "'vault policies d' => default" {
+  run get_completions 'vault policies d'
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'default' ]] || fail "output was: \"$output\""
+}
+
+@test "'vault policy-delete ' => default root" {
+  run get_completions 'vault policy-delete '
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'default root' ]] || fail "output was: \"$output\""
+}
+
+@test "'vault policy-delete d' => default" {
+  run get_completions 'vault policy-delete d'
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'default' ]] || fail "output was: \"$output\""
+}
+
+@test "'vault policy-write ' => default root" {
+  run get_completions 'vault policy-write '
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'default root' ]] || fail "output was: \"$output\""
+}
+
+@test "'vault policy-write d' => default" {
+  run get_completions 'vault policy-write d'
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'default' ]] || fail "output was: \"$output\""
+}
