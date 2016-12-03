@@ -3,8 +3,6 @@
 source vault-bash-completion.sh
 load get_completions
 
-export VAULT_ADDR=http://127.0.0.1:8200
-
 fail() {
   echo "$@" > /dev/stderr
   return 1
