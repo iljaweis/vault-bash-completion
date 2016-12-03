@@ -1,0 +1,8 @@
+language: bash
+sudo: required
+services:
+  - docker
+env:
+  - BASH_VERSION=4.4.5
+  - BASH_VERSION=3.2.57
+script: docker-compose -f tests/docker-compose.yml run test-vault-bash-completion-${BASH_VERSION}
