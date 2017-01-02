@@ -12,7 +12,14 @@ fail() {
   run get_completions 'vault '
   [[ "$status" == 0 ]]
   output=$(echo "$output" | paste -s -d ' ' -)
-  [[ "$output" =~ 'audit-disable audit-enable' ]] || fail "output was: \"$output\""
+  [[ "$output" =~ 'audit-disable audit-enable audit-list auth' ]] || fail "output was: \"$output\""
+}
+
+@test "'vault a' => commands" {
+  run get_completions 'vault a'
+  [[ "$status" == 0 ]]
+  output=$(echo "$output" | paste -s -d ' ' -)
+  [[ "$output" =~ 'audit-disable audit-enable audit-list auth auth-disable auth-enable' ]] || fail "output was: \"$output\""
 }
 
 @test "'vault c' => commands" {
