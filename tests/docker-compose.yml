@@ -1,0 +1,34 @@
+---
+version: '2'
+services:
+
+  vault:
+    image: vault
+    environment:
+      VAULT_DEV_ROOT_TOKEN_ID: 800f70d2-f5d0-f89d-592c-0dc57f090b7f
+
+  test-vault-bash-completion-4.4.5:
+    build:
+      context: ../
+      dockerfile: tests/Dockerfile-bash-4.4.5
+    volumes:
+      - ..:/app
+    links:
+      - vault
+    environment:
+      VAULT_ADDR: http://vault:8200
+      VAULT_TOKEN: 800f70d2-f5d0-f89d-592c-0dc57f090b7f
+    tty: true
+
+  test-vault-bash-completion-3.2.57:
+    build:
+      context: ../
+      dockerfile: tests/Dockerfile-bash-3.2.57
+    volumes:
+      - ..:/app
+    links:
+      - vault
+    environment:
+      VAULT_ADDR: http://vault:8200
+      VAULT_TOKEN: 800f70d2-f5d0-f89d-592c-0dc57f090b7f
+    tty: true
