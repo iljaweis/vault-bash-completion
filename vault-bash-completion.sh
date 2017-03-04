@@ -33,11 +33,13 @@ function _vault() {
     COMPREPLY=($(compgen -W "$policies" -- $cur))
   elif [ "$(echo $line | wc -w)" -le 2 ]; then
     if [[ "$line" =~ ^vault\ (read|write|delete|list)\ $ ]]; then
+      compopt -o nospace
       COMPREPLY=($(compgen -W "$(_vault_mounts)" -- ''))
     else
       COMPREPLY=($(compgen -W "$VAULT_COMMANDS" -- $cur))
     fi
   elif [[ "$line" =~ ^vault\ (read|write|delete|list)\ (.*)$ ]]; then
+    compopt -o nospace
     path=${BASH_REMATCH[2]}
     if [[ "$path" =~ ^([^ ]+)/([^ /]*)$ ]]; then
       list=$(vault list -format=yaml ${BASH_REMATCH[1]} 2> /dev/null | awk '{ print $2 }')
@@ -48,4 +50,4 @@ function _vault() {
   fi
 }
 
-complete -o default -o nospace -F _vault vault
+complete -o default -F _vault vault
