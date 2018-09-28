@@ -1,5 +1,10 @@
 # vault-bash-completion
 
+**Deprecated:** Vault now has built-in autocompletion support (see https://www.vaultproject.io/docs/commands/#autocompletion)
+
+
+
+
 Bash completion support for [HashiCorp Vault](https://www.vaultproject.io/)
 
 # Installation
